@@ -1,6 +1,13 @@
-<h1>Tabled</h1>
 
 <p>Welcome to Tabled!</p>
 
+<% if user_signed_in? %>
+
+<%= link_to 'New table', new_table_path %>
+
+<% else %>
+
 <p>Tabled is a place to create, share and horde tables
 for <abbr="Tabletop roleplaying games">TTRPGS</abbr>.</p>
+
+<% end %>

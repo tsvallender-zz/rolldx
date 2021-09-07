@@ -183,6 +183,7 @@ GEM
     tilt (2.0.10)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
+    vanilla_nested (1.3.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.1.0)
@@ -224,6 +225,7 @@ DEPENDENCIES
   selenium-webdriver
   spring
   tzinfo-data
+  vanilla_nested
   web-console (>= 4.1.0)
   webdrivers
   webpacker (~> 5.0)
