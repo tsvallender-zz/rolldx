@@ -6,7 +6,7 @@
     <th>Title</th>
     <th>Description</th>
   </tr>
-  <% table.rows.each do |r| %>
+  <% table.rows.order('num').each do |r| %>
   <tr>
     <td><%= r.num %></td>
     <td><%= r.name %></td>
