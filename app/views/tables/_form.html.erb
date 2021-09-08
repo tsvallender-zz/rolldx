@@ -22,7 +22,7 @@
     <th>Name</th>
     <th>Description</th>
   </tr>
-  <%= f.fields_for :rows do |row_f| %>
+  <%= f.fields_for :rows, @table.rows.order('num') do |row_f| %>
   <%= render 'row_fields', form: row_f %>
   <% end %>
 </table>
