@@ -1,11 +1,1 @@
-<h1><%= @table.title %></h1>
-
-<table>
-<% @table.rows.each do |r| %>
-<tr>
-  <td><%= r.id %></td>
-  <td><%= r.name %></td>
-  <td><%= r.description %></td>
-</tr>
-<% end %>
-</table>
+<%= render @table %>

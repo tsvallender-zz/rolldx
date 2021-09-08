@@ -1,1 +1,9 @@
-index
+<h2>Tables</h2>
+
+<% if @tables.any? %>
+<%= will_paginate %>
+<section id="tables">
+  <%= render @tables %>
+</section>
+<%= will_paginate @tables %>
+<% end %>

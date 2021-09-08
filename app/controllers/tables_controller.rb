@@ -3,6 +3,7 @@ class TablesController < ApplicationController
   before_action :set_table, only: [:show]
   
   def index
+    @tables = Table.all.paginate(page: params[:page])
   end
 
   def show

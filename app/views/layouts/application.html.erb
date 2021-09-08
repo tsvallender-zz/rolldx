@@ -12,9 +12,11 @@
 
   <body>
     <header>
-      <h1>Tabled</h1>
+      <h1><%= link_to 'Tabled', root_path %></h1>
       <nav>
 	<ul>
+	  <li>
+	    <%= link_to('Tables', tables_path) %>
 	  <% if user_signed_in? %>
 	  <li>
 	    <%= link_to('Sign out', destroy_user_session_path, method: :delete, data: { turbo: false }) %>
