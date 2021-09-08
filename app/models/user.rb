@@ -10,4 +10,8 @@ class User < ApplicationRecord
             format: { with: /\A[\w_-]+\z/i }
   
   has_many :tables, dependent: :destroy
+
+  def to_param
+    username
+  end
 end
