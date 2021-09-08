@@ -2,20 +2,21 @@
 
 <%= render 'shared/error_messages', object: f.object %>
 
-<%= f.label :title %>
-<%= f.text_field :title %>
+<h3><%= f.text_field :title, placeholder: "Table title", class: "titleField" %></h3>
 
-<fieldset>
-  <legend>Rows:</legend>
+<%= link_to_add_nested(f, :rows, '#tableForm') %>
 
-  <%= link_to_add_nested(f, :rows, '#rows') %>
-  <div id="rows">
-    <%= f.fields_for :rows do |row_f| %>
-    <%= render 'row_fields', form: row_f %>
-    <br />
-    <% end %>
-  </div>
-</fieldset>
+<table id="tableForm">
+  <tr>
+    <th>No.</th>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+  <%= f.fields_for :rows do |row_f| %>
+  <%= render 'row_fields', form: row_f %>
+  <% end %>
+</table>
+
 
 <%= f.submit yield(:button_text) %>
 

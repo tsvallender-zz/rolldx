@@ -1,9 +1,6 @@
-<%= form.label :name %>
-<%= form.text_field :name %>
-
-<%= form.label :description %>
-<%= form.text_field :description %>
-
-<%= link_to_remove_nested(form) %>
-
-
+<tr>
+<td><%= form.number_field :num %></td>
+<td><%= form.text_field :name %></td>
+<td><%= form.text_field :description %>
+<%= link_to_remove_nested(form) %></td>
+</tr>
