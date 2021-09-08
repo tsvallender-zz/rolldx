@@ -1,12 +1,23 @@
 $border-color: #000;
+$title-font: 'Goudy', Cambria, Times New Roman;
+$body-font: 'Goudy', Cambria, Times New Roman;
+
+@font-face {
+    font-family: 'Goudy';
+    src: font-url('goudy.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
 body {
+    font-family: $body-font;
     margin: 0 auto;
     width: 80%;
     max-width: 70em;
 }
 
 h1 {
+    padding: .5em;
     text-align: center;
     font-size: 6em;
     font-weight: bold;
