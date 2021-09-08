@@ -1,4 +1,4 @@
-<h3><%= link_to table.title, table %> by <%= table.user.username %></h3>
+<h3><%= link_to table.title, table %> by <%= link_to table.user.username, table.user %></h3>
 
 <table id="table-<%= table.id %>">
   <tr>

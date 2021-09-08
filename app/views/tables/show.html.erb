@@ -1,1 +1,4 @@
+<% if @table.user == current_user %>
+<%= link_to 'Edit table', edit_table_path(@table) %>
+<% end %>
 <%= render @table %>

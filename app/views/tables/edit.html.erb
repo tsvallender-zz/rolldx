@@ -1,0 +1,7 @@
+<% provide(:button_text, 'Save edits') %>
+
+<h2>Edit <%= @table.title %></h2>
+
+<%= render 'form' %>
+
+<%= link_to 'Delete table', @table, method: :delete, data: {confirm: "Are you sure?"} %>
