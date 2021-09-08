@@ -1,0 +1,11 @@
+<h2><%= @user.email %></h2>
+
+<% if @tables.any? %>
+<%= will_paginate @tables %>
+<section id="tables">
+  <%= render @tables %>
+</section>
+<%= will_paginate @tables %>
+<% else %>
+<p>This user hasn’t created any tables yet!</p>
+<% end %>
