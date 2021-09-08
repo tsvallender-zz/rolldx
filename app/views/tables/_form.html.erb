@@ -2,6 +2,16 @@
 
 <%= render 'shared/error_messages', object: f.object %>
 
+<script>
+  let rowNo = <%= @table.rows.count %>;
+  document.addEventListener('vanilla-nested:fields-added', function(e) {
+      rowNo++;
+      t = e.detail.added.getElementsByClassName('rowNo');
+      console.dir(t[0]);
+      t[0].value = rowNo;
+  })
+</script>
+
 <h3><%= f.text_field :title, placeholder: "Table title", class: "titleField" %></h3>
 
 <%= link_to_add_nested(f, :rows, '#tableForm') %>
