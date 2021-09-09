@@ -1,5 +1,7 @@
 <h3><%= link_to table.title, table %> by <%= link_to table.user.username, table.user %></h3>
-
+<% if (defined? table.title) && !table.title.empty? %>
+<div class="tableDescription"><%= table.description %></div>
+<% end %>
 <table id="table-<%= table.id %>">
   <tr>
     <th>No.</th>

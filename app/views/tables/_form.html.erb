@@ -13,7 +13,7 @@
 </script>
 
 <h3><%= f.text_field :title, placeholder: "Table title", class: "titleField" %></h3>
-
+<%= f.text_area :description, placeholder: "Table description", class: "descriptionInput" %>
 <%= link_to_add_nested(f, :rows, '#tableForm') %>
 
 <table id="tableForm">

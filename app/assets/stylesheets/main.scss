@@ -70,6 +70,12 @@ nav {
     }
 }
 
+.tableDescription {
+    font-size: 1.1em;
+    width: 80%;
+    margin: 1em auto;
+}
+
 table {
     margin: 0 auto;
     text-align: center;
@@ -86,8 +92,18 @@ table {
 }
 
 .titleField {
-    font-size: 2em;
+    font-size: 1.5em;
     margin: 0 auto;
+    width: 80%;
+}
+
+.descriptionInput {
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+    padding: 1em;
+    resize: none;
+    font-family: Goudy;
 }
 
 form {
@@ -98,6 +114,7 @@ form {
 	display: block;
     }
     input {
+	font-family: Goudy;
 	width: 100%;
 	margin: 0em;
 	padding: .5em;

@@ -44,7 +44,8 @@ class TablesController < ApplicationController
   
   private
   def table_params
-    params.require(:table).permit(:title, rows_attributes: [:id, :num, :name, :description, :_destroy])
+    params.require(:table).permit(:title, :description,
+                                  rows_attributes: [:id, :num, :name, :description, :_destroy])
   end
 
   def set_table
