@@ -12,11 +12,20 @@ $bold-foreground: #fff;
     font-style: normal;
 }
 
+html {
+    height: 100%;
+}
+
 body {
     font-family: $body-font;
     margin: 0 auto;
     width: 80%;
     max-width: 70em;
+    border-width: 0px 1px 0px 1px;
+    border-style: solid;
+    border-color: #000;
+    min-height: 100%;
+    padding: 0em 1em;
 }
 
 h1 {
@@ -132,5 +141,32 @@ dl {
     a:link, a:visited {
 	text-decoration: none;
 	color: $bold-foreground;
+    }
+}
+
+.loggedOut {
+    font-size: 1.5em;
+    padding: 3em;
+    p {
+	margin: 2em;
+    }
+    ul {
+	margin: 2em;
+	li {
+	    margin: 1em;
+	    list-style-type: disc;
+	}
+    }
+    .buttons {
+	text-align: center;
+	padding: 1em;
+    }
+    .button {
+	background-color: $bold-background;
+	color: $bold-foreground;
+	border-radius: .5em;
+	margin: 1em;
+	padding: 1em;
+	text-decoration: none;
     }
 }

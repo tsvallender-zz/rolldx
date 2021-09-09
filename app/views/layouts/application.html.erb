@@ -13,6 +13,7 @@
   <body>
     <header>
       <h1><%= link_to 'Tabled', root_path %></h1>
+      <% unless @nomenu %>
       <nav>
 	<ul>
 	  <li>
@@ -35,6 +36,8 @@
 	  <% end %>
 	</ul>
       </nav>
+      <% end %>
+    </header>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
