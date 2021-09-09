@@ -1,4 +1,30 @@
-<h2><%= @user.username %></h2>
+<h2><%= @user.username %>
+<% unless @user.name.empty? %><span class="name">(<%= @user.name %>)</span><% end %></h2>
+
+<% if @user == current_user %>
+<%= link_to 'Edit profile', edit_registration_path(current_user) %>
+<% end %>
+
+<dl>
+  <% if (defined? @user.web) &&!@user.web.empty? %>
+  <dt>Website:</dt>
+  <dd><%= link_to @user.web, url_with_protocol(@user.web), :target => '_blank' %></dd>
+  <% end %>
+  <% if (defined? @user.itch) && !@user.itch.empty? %>
+  <dt>Itch.io:</dt>
+  <dd><%= link_to @user.itch + ' on Itch.', 'https://'+@user.itch+'.itch.io/', :target => '_blank' %></dd>
+  <% end %>
+  <% if (defined? @user.twitter) && !@user.twitter.empty? %>
+  <dt>Twitter:</dt>
+  <dd><%= link_to '@'+@user.twitter, 'https://twitter.com/'+@user.twitter, :target => '_blank' %></dd>
+  <% end %>
+</dl>
+
+<% if (defined? @user.support) && !@user.support.empty? %>
+<div class="supportLink">
+  <%= link_to 'Like this user’s work? Support them here.',
+      url_with_protocol(@user.support), :target => '_blank' %></div>
+<% end %>
 
 <% if @tables.any? %>
 <%= will_paginate @tables %>

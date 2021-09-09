@@ -10,4 +10,8 @@ module ApplicationHelper
 
     link_to(name, '#', class: "add_fields", data: {id:id, fields: fields.gsub('\n', '')})
   end
+
+  def url_with_protocol(url)
+    /^http/i.match(url) ? url : "http://#{url}"
+  end
 end

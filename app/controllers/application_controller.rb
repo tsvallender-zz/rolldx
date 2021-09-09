@@ -9,11 +9,14 @@ class ApplicationController < ActionController::Base
                      :password,
                      :password_confirmation)}
       devise_parameter_sanitizer.permit(:account_update) { 
-        |u| u.permit(:username, 
-                     :email,
+        |u| u.permit(:email,
                      :password,
                      :password_confirmation,
                      :current_password,
-                     )}
+                     :web,
+                     :support,
+                     :itch,
+                     :name,
+                     :twitter)}
     end
 end

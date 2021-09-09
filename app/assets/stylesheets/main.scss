@@ -1,6 +1,9 @@
 $border-color: #000;
 $title-font: 'Goudy', Cambria, Times New Roman;
 $body-font: 'Goudy', Cambria, Times New Roman;
+$helper-text: gray;
+$bold-background: #000;
+$bold-foreground: #fff;
 
 @font-face {
     font-family: 'Goudy';
@@ -30,6 +33,9 @@ h1 {
 h2 {
     font-size: 3em;
     font-weight: bold;
+    .name {
+	color: $helper-text;
+    }
 }
 
 h3 {
@@ -75,8 +81,56 @@ table {
     margin: 0 auto;
 }
 
-input[type=submit] {
+form {
+    label {
+	font-size: 1.2em;
+	font-weight: bold;
+	margin: .5em 0em;
+	display: block;
+    }
+    input {
+	width: 100%;
+	margin: 0em;
+	padding: .5em;
+	display: block;
+    }
+    input[type=submit] {
+	display: block;
+	padding: .5em;
+	margin: .5em;
+    }
+    .helperText {
+	color: $helper-text;
+	display: block;
+	margin: 0em 0em .5em 0em;
+    }
+}
+
+dl {
+    text-align: center;
+    font-size: 1.2em;
+    margin: 1em;
+    dt {
+	font-weight: bold;
+	display: inline;
+    }
+    dd {
+	display: inline;
+    }
+}
+
+.supportLink {
     display: block;
+    margin: 0 auto;
+    width: 50%;
+    text-align: center;
+    font-size: 1.2em;
+    background-color: $bold-background;
+    color: $bold-foreground;
     padding: .5em;
-    margin: .5em;
+    border-radius: .5em;
+    a:link, a:visited {
+	text-decoration: none;
+	color: $bold-foreground;
+    }
 }

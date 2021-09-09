@@ -13,26 +13,56 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
+    <%= f.label :name %>
+    <span class="helperText">A real name or nickname.</span>
+    <%= f.text_field :name %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :web, 'Website URL' %>
+    <span class="helperText">Where is the best place to find you
+    online?</span>
+    <%= f.text_field :web %>
+  </div>
+
+  <div class="field">
+    <%= f.label :support, 'Support link' %>
+    <span class="helperText">Where can people offer financial support?
+    Add a link here (e.g. Ko-fi or Patreon).</span>
+    <%= f.text_field :support %>
+  </div>
+
+  <div class="field">
+    <%= f.label :itch %>
+    <span class="helperText">Your Itch username, if you have one, so
+    people can find your games.</span>
+    <%= f.text_field :itch %>
+  </div>
+
+  <div class="field">
+    <%= f.label :twitter %>
+    <span class="helperText">Your Twitter username, if you have one.</span>
+    <%= f.text_field :twitter %>
+  </div>
+
+  
+  <div class="field">
+    <%= f.label :password %>
+    <span class="helperText">Leave blank if you don't want to change it.
+    <% if @minimum_password_length %>
+      <%= @minimum_password_length %> characters minimum.
+      <% end %></span>
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
   <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+    <%= f.label :current_password %>
+    <span class="helperText">Required to confirm your changes.</span>
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
 
