@@ -1,5 +1,7 @@
-<h2><%= @user.username %>
-<% unless @user.name.empty? %><span class="name">(<%= @user.name %>)</span><% end %></h2>
+<h2><%= '@'+@user.username %></h2>
+<% unless @user.name.empty? %>
+<div class="name"><%= @user.name %></div>
+<% end %>
 
 <% if @user == current_user %>
 <%= link_to 'Edit profile', edit_registration_path(current_user) %>
@@ -20,12 +22,27 @@
   <% end %>
 </dl>
 
-<% if (defined? @user.support) && !@user.support.empty? %>
-<div class="supportLink">
-  <%= link_to 'Like this user’s work? Support them here.',
-      url_with_protocol(@user.support), :target => '_blank' %></div>
-<% end %>
 
+  <% if (defined? @user.support) && !@user.support.empty? %>
+
+<div class="right">
+  <div class="supportLink">
+    <%= link_to 'Like this user’s work? Support them here.',
+	url_with_protocol(@user.support), :target => '_blank' %></div>
+  <% end %>
+  <div class="highlight">
+  <% if @user.lists.any? %>
+  <h3>Lists</h3>
+  <ul>
+    <% @user.lists.each do |l| %>
+    <li><%= link_to l.name, l %></li>
+    <% end %>
+  </ul>
+  <% end %>
+  </div>
+</div>
+
+<div class="left">
 <% if @tables.any? %>
 <%= will_paginate @tables %>
 <section id="tables">
@@ -35,3 +52,4 @@
 <% else %>
 <p>This user hasn’t created any tables yet!</p>
 <% end %>
+</div>
