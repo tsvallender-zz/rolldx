@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
 
-<%= link_to 'New table', new_table_path %>
+<%= render 'logged_in_index' %>
 
 <% else %>
 

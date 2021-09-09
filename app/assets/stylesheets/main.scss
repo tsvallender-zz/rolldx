@@ -157,16 +157,29 @@ dl {
 	    list-style-type: disc;
 	}
     }
-    .buttons {
-	text-align: center;
-	padding: 1em;
-    }
+}
+.buttons {
+    text-align: center;
+    padding: 1em;
+}
+.button {
+    font-size: 1.5em;
+    text-align: center;
+    background-color: $bold-background;
+    color: $bold-foreground;
+    border-radius: .5em;
+    margin: 1em;
+    padding: 1em;
+    text-decoration: none;
+}
+.left {
+    float: left;
+    width: 55%;
+}
+.right {
+    width: 35%;
+    float: right;
     .button {
-	background-color: $bold-background;
-	color: $bold-foreground;
-	border-radius: .5em;
-	margin: 1em;
-	padding: 1em;
-	text-decoration: none;
+	display: block;
     }
 }
