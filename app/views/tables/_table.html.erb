@@ -1,18 +1,28 @@
-<h3><%= link_to table.title, table %> by <%= link_to table.user.username, table.user %></h3>
+<h3><%= link_to table.title, table, class: 'nodec' %>
+  <span class="name">by <%= link_to table.user.username, table.user %></span></h3>
+
 <% if (defined? table.title) && !table.title.empty? %>
 <div class="tableDescription"><%= table.description %></div>
 <% end %>
-<table id="table-<%= table.id %>">
+
+<%= link_to table, class: 'nodec' do %>
+<table id="table-<%= table.id %>" class="fade">
   <tr>
     <th>No.</th>
     <th>Title</th>
     <th>Description</th>
   </tr>
-  <% table.rows.order('num').each do |r| %>
+  <% table.rows.order('num').take(4).each do |r| %>
   <tr>
     <td><%= r.num %></td>
     <td><%= r.name %></td>
     <td><%= r.description %></td>
   </tr>
   <% end %>
+  <% if table.rows.count > 4 %>
+  <tr>
+    <td colspan="3">…</td>
+  </tr>
+  <% end %>
 </table>
+<% end %>

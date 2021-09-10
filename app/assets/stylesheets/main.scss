@@ -56,6 +56,13 @@ h2 {
 h3 {
     font-size: 2em;
     margin: 0em;
+    .name {
+	font-size: 1em;
+	a:link, a:visited {
+	    color: $helper-text;
+	    text-decoration: none;
+	}
+    }
 }
 
 header {
@@ -80,6 +87,11 @@ nav {
     }
 }
 
+.editLink {
+    display: block;
+    margin: 1em 0em;
+}
+
 .tableDescription {
     font-size: 1.1em;
     width: 80%;
@@ -99,6 +111,11 @@ table {
 	padding: 1em;
     }
     width: 80%;
+}
+
+a:link.nodec, a:visited.nodec {
+    color: #000;
+    text-decoration: none;
 }
 
 .titleField {
@@ -223,3 +240,8 @@ dl {
 	color: $bold-foreground;
     }
 }
+
+.fade {
+    mask-image: linear-gradient(to top, transparent 25%, black 75%);
+}
+

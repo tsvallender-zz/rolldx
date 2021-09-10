@@ -1,7 +1,27 @@
+<h2><%= @table.title %></h2>
+<% if (defined? @table.description) && @table.description.present? %>
+<div class="tableDescription"><%= @table.description %>
+
 <% if @table.user == current_user %>
-<%= link_to 'Edit table', edit_table_path(@table) %>
+<%= link_to 'Edit table', edit_table_path(@table), class: "editLink" %>
 <% end %>
-<%= render @table %>
+</div>
+<% end %>
+
+<table id="table-<%= @table.id %>">
+  <tr>
+    <th>No.</th>
+    <th>Title</th>
+    <th>Description</th>
+  </tr>
+  <% @table.rows.order('num').each do |r| %>
+  <tr>
+    <td><%= r.num %></td>
+    <td><%= r.name %></td>
+    <td><%= r.description %></td>
+  </tr>
+  <% end %>
+</table>
 
 <%= form_with(model: @listmember) do |f| %>
 <%= f.hidden_field :table_id, value: @table.id %>
