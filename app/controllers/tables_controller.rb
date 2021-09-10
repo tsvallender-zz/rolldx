@@ -8,6 +8,7 @@ class TablesController < ApplicationController
   end
 
   def show
+    @listmember = ListMember.new
   end
 
   def new
