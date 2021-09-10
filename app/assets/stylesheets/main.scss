@@ -15,6 +15,7 @@ $bold-foreground: #fff;
 html {
     height: 100vh;
     min-height: 100vh;
+    background-color: #fff;
 }
 
 body {
@@ -27,6 +28,10 @@ body {
     border-color: #000;
     min-height: 100%;
     padding: 0em 1em;
+    background-image: image-url('background.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 h1 {
@@ -54,6 +59,7 @@ h2 {
 }
 
 h3 {
+    text-align: center;
     font-size: 2em;
     margin: 0em;
     .name {
@@ -87,12 +93,9 @@ nav {
     }
 }
 
-.editLink {
-    display: block;
-    margin: 1em 0em;
-}
 
 .tableDescription {
+    text-align: center;
     font-size: 1.1em;
     width: 80%;
     margin: 1em auto;
@@ -159,6 +162,31 @@ form {
     }
 }
 
+form.listmember {
+    text-align: center;
+
+}
+.editLink, form.listmember input[type=submit], form.listmember select {
+    width: auto;
+    font-size: 1.2em;
+    padding: .5em;
+    margin: .5em;
+    display: inline;
+    color: $bold-foreground;
+    background-color: $bold-background;
+    border: 0;
+    border-radius: .5em;
+}
+
+.editLink {
+    display: block;
+    text-align: center;
+}
+
+a:link.editLink, a:visited.editLink {
+    text-decoration: none;
+}
+
 dl {
     text-align: center;
     font-size: 1.2em;
@@ -205,8 +233,7 @@ dl {
     text-decoration: none;
 }
 .left {
-    float: left;
-    width: 55%;
+    width: 60%;
 }
 .right {
     width: 35%;

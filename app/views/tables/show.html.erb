@@ -1,13 +1,20 @@
 <h2><%= @table.title %></h2>
 <% if (defined? @table.description) && @table.description.present? %>
-<div class="tableDescription"><%= @table.description %>
+<div class="tableDescription"><%= @table.description %></div>
+<% end %>
 
+<div class= "highlight right">
 <% if @table.user == current_user %>
 <%= link_to 'Edit table', edit_table_path(@table), class: "editLink" %>
 <% end %>
-</div>
-<% end %>
 
+<%= form_with(model: @listmember, class: 'listmember') do |f| %>
+  <%= f.hidden_field :table_id, value: @table.id %>
+  <%= f.select :list_id, current_user.lists.collect { |l| [ l.name, l.id ] }, { include_blank: true } %>
+  <%= f.submit "Add table to list" %>
+<% end %>
+</div>
+<div class="left">
 <table id="table-<%= @table.id %>">
   <tr>
     <th>No.</th>
@@ -23,8 +30,4 @@
   <% end %>
 </table>
 
-<%= form_with(model: @listmember) do |f| %>
-<%= f.hidden_field :table_id, value: @table.id %>
-<%= f.select :list_id, current_user.lists.collect { |l| [ l.name, l.id ] }, { include_blank: true } %>
-<%= f.submit "Add table to list" %>
-<% end %>
+</div>
