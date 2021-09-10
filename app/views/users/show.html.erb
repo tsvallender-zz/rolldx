@@ -1,55 +1,64 @@
 <h2><%= '@'+@user.username %></h2>
-<% unless @user.name.empty? %>
+<% if (defined? @user.name && @user.name.present?) %>
 <div class="name"><%= @user.name %></div>
 <% end %>
 
 <% if @user == current_user %>
-<%= link_to 'Edit profile', edit_registration_path(current_user) %>
-<% end %>
-
+  <%= link_to 'Edit profile', edit_registration_path(current_user) %>
+<% else %>
+  <% if @follow.following.present? %>
+    <%= link_to 'Unfollow', @follow, :method => 'delete' %>
+  <% else %>
+    <%= form_with(model: @follow) do |f| %>
+      <%= f.hidden_field :following_id, value: @user.id %>
+      <%= f.submit "Follow" %>
+    <% end %>
+  <% end %>
+<% end %>  
+    
 <dl>
-  <% if (defined? @user.web) &&!@user.web.empty? %>
+  <% if (defined? @user.web) && @user.web.present?%>
   <dt>Website:</dt>
   <dd><%= link_to @user.web, url_with_protocol(@user.web), :target => '_blank' %></dd>
   <% end %>
-  <% if (defined? @user.itch) && !@user.itch.empty? %>
+  <% if (defined? @user.itch) && @user.itch.present? %>
   <dt>Itch.io:</dt>
   <dd><%= link_to @user.itch + ' on Itch.', 'https://'+@user.itch+'.itch.io/', :target => '_blank' %></dd>
   <% end %>
-  <% if (defined? @user.twitter) && !@user.twitter.empty? %>
+  <% if (defined? @user.twitter) && @user.twitter.present? %>
   <dt>Twitter:</dt>
   <dd><%= link_to '@'+@user.twitter, 'https://twitter.com/'+@user.twitter, :target => '_blank' %></dd>
   <% end %>
 </dl>
 
 
-  <% if (defined? @user.support) && !@user.support.empty? %>
-
 <div class="right">
+  <% if (defined? @user.support) && @user.support.present? %>
   <div class="supportLink">
     <%= link_to 'Like this user’s work? Support them here.',
-	url_with_protocol(@user.support), :target => '_blank' %></div>
+	url_with_protocol(@user.support), :target => '_blank' %>
+  </div>
   <% end %>
   <div class="highlight">
-  <% if @user.lists.any? %>
-  <h3>Lists</h3>
-  <ul>
-    <% @user.lists.each do |l| %>
-    <li><%= link_to l.name, l %></li>
+    <% if @user.lists.any? %>
+    <h3>Lists</h3>
+    <ul>
+      <% @user.lists.each do |l| %>
+      <li><%= link_to l.name, l %></li>
+      <% end %>
+    </ul>
     <% end %>
-  </ul>
-  <% end %>
   </div>
 </div>
 
 <div class="left">
-<% if @tables.any? %>
-<%= will_paginate @tables %>
-<section id="tables">
-  <%= render @tables %>
-</section>
-<%= will_paginate @tables %>
-<% else %>
-<p>This user hasn’t created any tables yet!</p>
-<% end %>
+  <% if @tables.any? %>
+  <%= will_paginate @tables %>
+  <section id="tables">
+    <%= render @tables %>
+  </section>
+  <%= will_paginate @tables %>
+  <% else %>
+  <p>This user hasn’t created any tables yet!</p>
+  <% end %>
 </div>

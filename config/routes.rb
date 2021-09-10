@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   resources :lists
   resources :tables
   resources :list_members, only: [:create]
+  resources :follows, only: [:create, :destroy]
   root to: 'static#index'
 end
