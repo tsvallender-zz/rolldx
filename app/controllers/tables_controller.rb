@@ -4,11 +4,15 @@ class TablesController < ApplicationController
   before_action :table_owner, only: [:edit, :update, :destroy]
   
   def index
-    @tables = Table.all.paginate(page: params[:page])
+    @tables = Table.all.where(:draft => false).paginate(page: params[:page])
   end
 
   def show
-    @listmember = ListMember.new
+    unless @table.draft && @table.user != current_user
+      @listmember = ListMember.new
+    else
+      render status: :forbidden
+    end
   end
 
   def new
@@ -45,7 +49,7 @@ class TablesController < ApplicationController
   
   private
   def table_params
-    params.require(:table).permit(:title, :description,
+    params.require(:table).permit(:title, :description, :draft,
                                   rows_attributes: [:id, :num, :name, :description, :_destroy])
   end
 

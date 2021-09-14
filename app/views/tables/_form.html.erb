@@ -27,6 +27,8 @@
   <% end %>
 </table>
 
+<%= f.label :draft %>
+<%= f.check_box :draft, class: "draftCheckbox" %>
 
 <%= f.submit yield(:button_text) %>
 
