@@ -4,7 +4,13 @@ class TablesController < ApplicationController
   before_action :table_owner, only: [:edit, :update, :destroy]
   
   def index
-    @tables = Table.all.where(:draft => false).order("created_at DESC").paginate(page: params[:page])
+    @tables = Table.all.where(:draft => false).order("created_at DESC")
+    if (defined? search_params[:terms])
+      @searchterms = search_params[:terms]
+      @tables = @tables.search(search_params[:terms])
+    end
+    
+    @tables = @tables.paginate(page: params[:page])
   end
 
   def show
@@ -48,8 +54,12 @@ class TablesController < ApplicationController
   end
   
   private
+  def search_params
+    params.require(:search).permit(:terms)
+  end
+  
   def table_params
-    params.require(:table).permit(:title, :description, :draft,
+    params.require(:table).permit(:title, :description, :draft, :terms,
                                   rows_attributes: [:id, :num, :name, :description, :_destroy])
   end
 

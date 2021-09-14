@@ -24,6 +24,7 @@ gem 'devise'
 gem 'vanilla_nested'
 gem 'will_paginate'
 gem 'turbo-rails'
+gem 'pg_search'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
