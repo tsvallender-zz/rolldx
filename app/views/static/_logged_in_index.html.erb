@@ -6,4 +6,16 @@
   <%= link_to 'New list', new_list_path, class: 'button' %>
   <%= link_to 'Like Tabled? Support us!', 'https://ko-fi.com/tsvallender',
       class: 'button', :target => '_blank' %>
+
+  <h4>Drafts</h4>
+  <% if current_user.tables.where(:draft => true).count > 0 %>
+  <ul>
+    <% current_user.tables.where(:draft => true).each do |t| %>
+    <li><%= link_to t.title, t %></li>
+    <% end %>
+  </ul>
+  <% else %>
+  <p>You don’t have any drafts.</p>
+  <% end %>
+  
 </div>
