@@ -12,6 +12,11 @@
 <%= link_to 'Edit table', edit_table_path(@table), class: "editLink" %>
 <% end %>
 
+<%= link_to 'Share on Twitter',
+    'https://twitter.com/intent/tweet?url='+table_url(@table)+
+    '&text=Check+out+this+great+table+on+Tabled+by+'+@table.user.username+'!'+
+    '&hashtags=ttrpg,tabled', class: 'editLink' %>
+
 <%= form_with(model: @listmember, class: 'listmember') do |f| %>
   <%= f.hidden_field :table_id, value: @table.id %>
   <%= f.select :list_id, current_user.lists.collect { |l| [ l.name, l.id ] }, { include_blank: true } %>
