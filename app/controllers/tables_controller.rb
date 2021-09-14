@@ -4,7 +4,7 @@ class TablesController < ApplicationController
   before_action :table_owner, only: [:edit, :update, :destroy]
   
   def index
-    @tables = Table.all.where(:draft => false).paginate(page: params[:page])
+    @tables = Table.all.where(:draft => false).order("created_at DESC").paginate(page: params[:page])
   end
 
   def show
