@@ -17,11 +17,14 @@ class ListsController < ApplicationController
   end
 
   def show
+    if @list.private && @list.user != current_user
+      render status: :forbidden
+    end
   end
 
   private
   def list_params
-    params.require(:list).permit(:name, :description, table_ids: [])
+    params.require(:list).permit(:name, :description, :private, table_ids: [])
   end
   
   def set_list

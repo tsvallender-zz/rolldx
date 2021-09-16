@@ -4,7 +4,7 @@ class TablesController < ApplicationController
   before_action :table_owner, only: [:edit, :update, :destroy]
   
   def index
-    @tables = Table.all.where(:draft => false).order("created_at DESC")
+    @tables = Table.all.where(:draft => false, :private =>false).order("created_at DESC")
     if (defined? search_params[:terms])
       @searchterms = search_params[:terms]
       @tables = @tables.search(search_params[:terms])
@@ -14,7 +14,7 @@ class TablesController < ApplicationController
   end
 
   def show
-    unless @table.draft && @table.user != current_user
+    unless (@table.private || @table.draft) && @table.user != current_user
       @listmember = ListMember.new
     else
       render status: :forbidden
@@ -59,7 +59,7 @@ class TablesController < ApplicationController
   end
   
   def table_params
-    params.require(:table).permit(:title, :description, :draft, :terms,
+    params.require(:table).permit(:title, :description, :draft, :private,
                                   rows_attributes: [:id, :num, :name, :description, :_destroy])
   end
 

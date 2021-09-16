@@ -1,5 +1,8 @@
 <% if @table.draft %>
-<p class="draftNotice">This table is currently a draft.</p>
+<p class="notice">This table is currently a draft.</p>
+<% end %>
+<% if @table.private %>
+<p class="notice">This table is private</p>
 <% end %>
 
 <h2><%= @table.title %></h2>

@@ -8,6 +8,9 @@
 <%= f.label :description %>
 <%= f.text_field :description %>
 
+<%= f.label :private %>
+<%= f.check_box :private %>
+
 <%= f.submit yield(:button_text) %>
 
 <% end %>

@@ -1,3 +1,7 @@
+<% if @list.private %>
+<p class="notice">This list is private.</p>
+<% end %>
+
 <h3><%= @list.name %></h3>
 <div class="tableDescription"><%= @list.description %></div>
 <%= render @list.tables %>
