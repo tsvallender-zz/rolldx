@@ -1,6 +1,6 @@
 $border-color: #000;
 $title-font: 'Goudy', Cambria, Times New Roman;
-$body-font: 'Goudy', Cambria, Times New Roman;
+$body-font: 'Raleway', Calibri, Helvetica, Arial;
 $helper-text: gray;
 $bold-background: #000;
 $bold-foreground: #fff;
@@ -8,6 +8,13 @@ $bold-foreground: #fff;
 @font-face {
     font-family: 'Goudy';
     src: font-url('goudy.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Raleway';
+    src: font-url('raleway.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
@@ -32,6 +39,10 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
+}
+
+h1, h2 {
+    font-family: $title-font;
 }
 
 h1 {
@@ -137,13 +148,19 @@ a:link.nodec, a:visited.nodec {
 }
 
 form {
+    width: 80%;
+    margin: 0 auto;
+    .field {
+	margin: .5em 0em;
+    }
     label {
 	font-size: 1.2em;
 	font-weight: bold;
 	margin: .5em 0em;
 	display: block;
     }
-    input {
+    input[type=text], input[type=email], input[type=password] {
+    	box-sizing: border-box;
 	font-family: Goudy;
 	width: 100%;
 	margin: 0em;
@@ -153,7 +170,9 @@ form {
     input[type=submit] {
 	display: block;
 	padding: .5em;
-	margin: .5em;
+	margin: 0em;
+	width: 100%;
+	font-size: 1.2em;
     }
     .helperText {
 	color: $helper-text;
@@ -273,3 +292,6 @@ dl {
     mask-image: linear-gradient(to top, transparent 25%, black 75%);
 }
 
+.inline {
+    display: inline;
+}
