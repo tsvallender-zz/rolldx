@@ -37,7 +37,7 @@ body {
 h1 {
     padding: .5em;
     text-align: center;
-    font-size: 6em;
+    font-size: calc(3rem + 3vw);
     font-weight: bold;
     a {
 	text-decoration: none;
@@ -189,7 +189,7 @@ a:link.editLink, a:visited.editLink {
 
 dl {
     text-align: center;
-    font-size: 1.2em;
+
     margin: 1em;
     background-color: lightgray;
     padding: .5em;
@@ -208,7 +208,7 @@ dl {
     font-size: 1.5em;
     padding: 3em;
     p {
-	margin: 2em;
+	margin: 1em;
     }
     ul {
 	margin: 2em;
@@ -223,12 +223,13 @@ dl {
     padding: 1em;
 }
 .button {
-    font-size: 1.5em;
+    display: inline-block;
+    font-size: calc(1rem + 1vw);
     text-align: center;
     background-color: $bold-background;
     color: $bold-foreground;
     border-radius: .5em;
-    margin: 1em;
+    margin: 0;
     padding: 1em;
     text-decoration: none;
 }
