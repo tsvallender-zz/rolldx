@@ -26,5 +26,20 @@ User.all.each do |u|
       rownum += 1
     end
     table.save!
+    table.create_activity :create, owner: u
+  end
+
+  2.times do
+    tables = []
+    5.times do
+      tables << 1 + rand(Table.count)
+    end
+    
+    list = u.lists.build(name: Faker::Lorem.sentence(word_count: 3),
+                         description: Faker::Lorem.sentence(word_count: 20),
+                         private: false, table_ids: tables)
+    if list.save!
+      list.create_activity :create, owner: u
+    end
   end
 end

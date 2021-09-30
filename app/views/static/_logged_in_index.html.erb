@@ -2,10 +2,12 @@
   <%= render 'tables/search' %>
   <h2>Latest tables:</h2>
   <% @activities.each do |a| %>
+    <div class="activity">
     <% if a.trackable %> 
-      <%= link_to a.owner.name, a.owner if a.owner %>
+      <%= link_to a.owner.username, a.owner if a.owner %>
       <%= render_activity a %>
     <% end %>
+    </div>  
   <% end %>  
 </div>
 
