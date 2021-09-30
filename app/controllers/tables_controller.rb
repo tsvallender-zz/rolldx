@@ -29,6 +29,7 @@ class TablesController < ApplicationController
     table = current_user.tables.build(table_params)
 
     if table.save!
+      table.create_activity :create, owner: current_user
       redirect_to table
     else
       redirect_to new_table_path
@@ -40,6 +41,7 @@ class TablesController < ApplicationController
 
   def update
     if @table.update(table_params)
+      table.create_activity :update, owner: current_user
       flash[:success] = "Table updated!"
       redirect_to @table
     else

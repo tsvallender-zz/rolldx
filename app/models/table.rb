@@ -7,6 +7,10 @@ class Table < ApplicationRecord
                       dictionary: 'english',
                       any_word: true
                     }}
+  
+  include PublicActivity::Common
+
+
   belongs_to :user
   has_many :rows, dependent: :destroy, inverse_of: :table
   accepts_nested_attributes_for :rows, allow_destroy: true, reject_if: :all_blank

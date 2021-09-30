@@ -5,6 +5,7 @@ class ListMembersController < ApplicationController
     lm = ListMember.new(list_member_params)
 
     if lm.save!
+      lm.create_activity :create, owner: current_user
       flash[:success] = lm.list.name + " was added to your list"
       redirect_to lm.list
     end

@@ -1,7 +1,14 @@
 <div class="left">
   <%= render 'tables/search' %>
   <h2>Latest tables:</h2>
+  <% @activities.each do |a| %>
+    <% if a.trackable %> 
+      <%= link_to a.owner.name, a.owner if a.owner %>
+      <%= render_activity a %>
+    <% end %>
+  <% end %>  
 </div>
+
 <div class="right">
   <%= link_to 'New table', new_table_path, class: 'button' %>
   <%= link_to 'New list', new_list_path, class: 'button' %>

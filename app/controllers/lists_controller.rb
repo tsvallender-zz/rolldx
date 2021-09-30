@@ -10,6 +10,7 @@ class ListsController < ApplicationController
     list = current_user.lists.build(list_params)
 
     if list.save!
+      list.create_activity :create, owner: current_user
       redirect_to list
     else
       redirect_to new_list_path
