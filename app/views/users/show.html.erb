@@ -1,3 +1,5 @@
+<% provide(:title, @user.username) %>
+
 <h2><%= '@'+@user.username %></h2>
 <% if (defined? @user.name && @user.name.present?) %>
   <div class="name"><%= @user.name %></div>
