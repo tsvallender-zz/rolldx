@@ -1,4 +1,6 @@
-<%= form_tag(tables_path, method: :get) do %>
-<%= text_field :search, :terms %>
-<%= submit_tag 'Search' %>
+<%= form_with(url: tables_path, method: :get, class: "search") do |f| %>
+<div class="field">
+<%= text_field :search, :terms, placeholder: "Enter search terms" %>
+</div>
+<%= f.submit 'Search' %>
 <% end %>

@@ -19,6 +19,10 @@ $bold-foreground: #fff;
     font-style: normal;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 html {
     height: 100vh;
     min-height: 100vh;
@@ -41,7 +45,7 @@ body {
     background-attachment: fixed;
 }
 
-h1, h2 {
+h1, h2, h3, h4 {
     font-family: $title-font;
 }
 
@@ -62,6 +66,11 @@ h2 {
     text-align: center;
     margin: 1em 0em .5em 0em;
 }
+
+h3 {
+    font-size: 2em;
+}
+
 .name {
     color: $helper-text;
     font-style: italic;
@@ -256,10 +265,11 @@ dl {
     width: 60%;
 }
 .right {
-    width: 35%;
+    width: 30%;
     float: right;
     .button {
 	display: block;
+	margin: 1em 0 1em 0;
     }
     li {
 	list-style-type: disc;
@@ -267,10 +277,31 @@ dl {
     }
 }
 
+form.search {
+    background-color: $bold-background;
+    color: $bold-foreground;
+    width: 100%;
+    padding: .5em;
+    border-radius: .5em;
+    margin: 1em 0;
+}
+
 .highlight {
     background-color: lightgray;
     border-radius: .5em;
     padding: .5em;
+}
+
+#activities {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: .5em;
+    padding: .5em;
+    h2 {
+	margin: 0;
+    }
+    .activity {
+	margin: .2em 0;
+    }
 }
 
 .supportLink {
@@ -294,4 +325,8 @@ dl {
 
 .inline {
     display: inline;
+}
+.pagination {
+    text-align: center;
+    margin: 1em;
 }
