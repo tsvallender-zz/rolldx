@@ -15,9 +15,10 @@
     <% end %>
   <% end %>
 <% end %>  
-    
+
+<% if (((defined? @user.web) && @user.web.present?) || ((defined? @user.itch) && @user.itch.present?) || ((defined? @user.twitter) && @user.twitter.present?)) %>
 <ul id="userlinks">
-  <% if (defined? @user.web) && @user.web.present?%>
+  <% if (defined? @user.web) && @user.web.present? %>
   <li><strong>Website: </strong><%= link_to @user.web, url_with_protocol(@user.web), :target => '_blank' %></li>
   <% end %>
   <% if (defined? @user.itch) && @user.itch.present? %>
@@ -27,7 +28,7 @@
   <li><strong>Twitter: </strong><%= link_to '@'+@user.twitter, 'https://twitter.com/'+@user.twitter, :target => '_blank' %></li>
   <% end %>
 </ul>
-
+<% end %>
 
 <div class="right">
   <% if current_user == @user %>
@@ -37,16 +38,16 @@
 	url_with_protocol(@user.support), :target => '_blank' %></div>
   <% end %>
 
+  <% if @user.lists.any? %>
   <div class="highlight">
-    <% if @user.lists.any? %>
     <h3>Lists</h3>
     <ul>
       <% @user.lists.each do |l| %>
       <li><%= link_to l.name, l %></li>
       <% end %>
     </ul>
-    <% end %>
   </div>
+  <% end %>
 </div>
 
 <div class="left">
