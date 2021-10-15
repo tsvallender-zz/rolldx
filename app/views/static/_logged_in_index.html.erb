@@ -3,8 +3,9 @@
   <%= link_to 'New table', new_table_path, class: 'button' %>
   <%= link_to 'New list', new_list_path, class: 'button' %>
   <%= link_to 'Like Tabled? Support us!', 'https://ko-fi.com/tsvallender',
-      class: 'button', :target => '_blank' %>
+      class: 'button support', :target => '_blank' %>
 
+  <section id="drafts">
   <h3>Drafts</h3>
   <% if current_user.tables.where(:draft => true).count > 0 %>
   <ul>
@@ -15,7 +16,7 @@
   <% else %>
   <p>You don’t have any drafts.</p>
   <% end %>
-  
+  </section>
 </div>
 
 <div class="left">

@@ -16,20 +16,17 @@
   <% end %>
 <% end %>  
     
-<dl>
+<ul id="userlinks">
   <% if (defined? @user.web) && @user.web.present?%>
-  <dt>Website:</dt>
-  <dd><%= link_to @user.web, url_with_protocol(@user.web), :target => '_blank' %></dd>
+  <li><strong>Website: </strong><%= link_to @user.web, url_with_protocol(@user.web), :target => '_blank' %></li>
   <% end %>
   <% if (defined? @user.itch) && @user.itch.present? %>
-  <dt>Itch.io:</dt>
-  <dd><%= link_to @user.itch + ' on Itch.', 'https://'+@user.itch+'.itch.io/', :target => '_blank' %></dd>
+  <li><strong>Itch.io: </strong><%= link_to @user.itch + ' on Itch.', 'https://'+@user.itch+'.itch.io/', :target => '_blank' %></li>
   <% end %>
   <% if (defined? @user.twitter) && @user.twitter.present? %>
-  <dt>Twitter:</dt>
-  <dd><%= link_to '@'+@user.twitter, 'https://twitter.com/'+@user.twitter, :target => '_blank' %></dd>
+  <li><strong>Twitter: </strong><%= link_to '@'+@user.twitter, 'https://twitter.com/'+@user.twitter, :target => '_blank' %></li>
   <% end %>
-</dl>
+</ul>
 
 
 <div class="right">
