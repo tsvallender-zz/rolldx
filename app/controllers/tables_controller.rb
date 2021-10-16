@@ -23,6 +23,11 @@ class TablesController < ApplicationController
 
   def new
     @table = Table.new
+    4.times do
+      r = Row.new
+      @table.rows << r
+    end
+    @table
   end
 
   def create

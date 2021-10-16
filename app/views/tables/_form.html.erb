@@ -3,34 +3,54 @@
 <%= render 'shared/error_messages', object: f.object %>
 
 <script>
-  let rowNo = <%= @table.rows.count %>;
-  document.addEventListener('vanilla-nested:fields-added', function(e) {
-      rowNo++;
-      t = e.detail.added.getElementsByClassName('rowNo');
-      console.dir(t[0]);
-      t[0].value = rowNo;
-  })
+  window.onload = function() {
+      let rowNo = <%= @table.rows.count %>;
+      document.addEventListener('vanilla-nested:fields-added', function(e) {
+	  rowNo++;
+	  t = e.detail.added.getElementsByClassName('rowNo');
+	  console.dir(t[0]);
+	  t[0].value = rowNo;
+      })
+
+      if (<%= @table.rows.count %> == 0) {
+	  addRows(4);
+      }
+  }
+
+  async function addRows(n) {
+      let button = document.getElementsByClassName('addrow')[0];
+      let e = document.createEvent('MouseEvents');
+      e.initEvent('click', true, true);
+
+      for (let i = 0; i < n; i++) {
+	  await new Promise(r => setTimeout(r, 1));
+	  button.dispatchEvent(e);
+      }
+  }
 </script>
 
-<h3><%= f.text_field :title, placeholder: "Table title", class: "titleField" %></h3>
+<%= f.text_field :title, placeholder: "Table title", class: "titleField" %>
 <%= f.text_area :description, placeholder: "Table description", class: "descriptionInput" %>
-<%= link_to_add_nested(f, :rows, '#tableForm') %>
 
 <table id="tableForm">
+  <thead>
   <tr>
     <th>No.</th>
     <th>Name</th>
     <th>Description</th>
   </tr>
+  </thead>
   <%= f.fields_for :rows, @table.rows.order('num') do |row_f| %>
-  <%= render 'row_fields', form: row_f %>
+    <%= render 'row_fields', form: row_f %>
   <% end %>
 </table>
 
-<%= f.label :draft %>
-<%= f.check_box :draft %>
-<%= f.label :private %>
-<%= f.check_box :private %>
+<%= link_to_add_nested(f, :rows, '#tableForm', link_classes: 'button addrow') %>
+
+<%= f.label :draft, class: 'formoptions' %>
+<%= f.check_box :draft, class: 'formoptions' %>
+<%= f.label :private, class: 'formoptions' %>
+<%= f.check_box :private, class: 'formoptions' %>
 <%= f.submit yield(:button_text) %>
 
 <% end %>

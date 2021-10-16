@@ -137,14 +137,9 @@ a:link.nodec, a:visited.nodec {
     text-decoration: none;
 }
 
-.titleField {
-    margin: 0 auto;
-    width: 80%;
-}
-
 .descriptionInput {
     display: block;
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
     padding: 1em;
     resize: none;
@@ -180,6 +175,18 @@ form {
 	color: $helper-text;
 	display: block;
 	margin: 0em 0em .5em 0em;
+    }
+    input[type=text].titleField {
+	margin: .5em auto;
+	font-size: 2em;
+    }
+    .formoptions {
+	display: inline;
+	margin: 1em 0;
+    }
+    .addrow {
+	display: block;
+	margin: .5em;
     }
 }
 
