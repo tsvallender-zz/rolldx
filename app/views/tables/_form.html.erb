@@ -35,9 +35,10 @@
 <table id="tableForm">
   <thead>
   <tr>
-    <th>No.</th>
-    <th>Name</th>
-    <th>Description</th>
+    <th class="numCol">No.</th>
+    <th class="nameCol">Name</th>
+    <th class="descriptionCol">Description</th>
+    <th class="removeCol"></th>
   </tr>
   </thead>
   <%= f.fields_for :rows, @table.rows.order('num') do |row_f| %>

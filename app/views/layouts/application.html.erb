@@ -15,7 +15,7 @@
 
   <body>
     <header>
-      <h1><%= link_to 'Tabled', root_path %></h1>
+      <h1><%= link_to root_path do %>Roll d<span class="math">x</span><% end %></h1>
       <% unless @nomenu %>
       <nav>
 	<ul>
@@ -41,8 +41,12 @@
       </nav>
       <% end %>
     </header>
+    <% if (defined? notice) && !notice.nil? %>
     <p class="notice"><%= notice %></p>
+    <% end %>
+    <% if (defined? alert) && !alert.nil? %>
     <p class="alert"><%= alert %></p>
+    <% end %>
 
     <%= yield %>
   </body>

@@ -1,15 +1,22 @@
 $border-color: #000;
-$title-font: 'Goudy', Cambria, Times New Roman;
+$title-font: 'Linden Hill', Cambria, Times New Roman;
 $body-font: 'Raleway', Calibri, Helvetica, Arial;
 $helper-text: gray;
 $bold-background: #000;
 $bold-foreground: #fff;
 
 @font-face {
-    font-family: 'Goudy';
-    src: font-url('goudy.woff') format('woff');
+    font-family: 'Linden Hill';
+    src: font-url('lindenhill.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+}
+@font-face {
+    font-family: 'Linden Hill';
+    src: font-url('lindenhill-italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-feature-settings: "numr";
 }
 
 @font-face {
@@ -129,7 +136,10 @@ table {
     th, td {
 	padding: 1em;
     }
-    width: 80%;
+    width: 90%;
+    .num {
+	width: 10%;
+    }
 }
 
 a:link.nodec, a:visited.nodec {
@@ -347,4 +357,58 @@ form.search {
 
 strong {
     font-weight: bold;
+}
+
+.notice, .alert {
+    display: block;
+    width: 80%;
+    background-color: rgba(200, 0, 0, 0.5);
+    padding: .5em;
+    border-radius: .5em;
+    margin: .5em auto;
+    font-weight: bold;
+}
+
+.math {
+    font-style: italic;
+}
+
+table#tableForm {
+    width: 100%;
+    td {
+	vertical-align: middle;
+	padding: 1em .2em;
+    }
+    .numCol {
+	width: 5%;
+    }
+    .nameCol {
+	width: 35%;
+    }
+    .descriptionCol {
+	width: 50%;
+    }
+    .removeCol {
+	width: 10%;
+    }
+    input {
+	background-color: rgba(255, 255, 255, 0.7);
+	border: 0;
+	border-radius: .5em;
+    }
+    input.rowNo {
+	width: 100%;
+	text-align: right;
+	padding: .5em;
+    }
+}
+
+.no-spinners {
+    -moz-appearance:textfield;
+}
+
+.no-spinners::-webkit-outer-spin-button,
+.no-spinners::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
