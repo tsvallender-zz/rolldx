@@ -29,7 +29,7 @@
   }
 </script>
 
-<%= f.select
+<%= f.collection_select :die, Die.all, :id, :name %>
 <%= f.text_field :title, placeholder: "Table title", class: "titleField" %>
 <%= f.text_area :description, placeholder: "Table description", class: "descriptionInput" %>
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_20_094206) do
+ActiveRecord::Schema.define(version: 2021_10_20_101326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,8 @@ ActiveRecord::Schema.define(version: 2021_10_20_094206) do
     t.text "description"
     t.boolean "draft", default: false
     t.boolean "private", default: false
+    t.bigint "die_id", null: false
+    t.index ["die_id"], name: "index_tables_on_die_id"
     t.index ["user_id"], name: "index_tables_on_user_id"
   end
 
@@ -119,5 +121,6 @@ ActiveRecord::Schema.define(version: 2021_10_20_094206) do
   add_foreign_key "list_members", "tables"
   add_foreign_key "lists", "users"
   add_foreign_key "rows", "tables"
+  add_foreign_key "tables", "dice"
   add_foreign_key "tables", "users"
 end

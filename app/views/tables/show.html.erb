@@ -7,7 +7,7 @@
 <p class="notice">This table is private</p>
 <% end %>
 
-<h2><%= @table.title %></h2>
+<h2><%= @table.die.name %> <%= @table.title %></h2>
 <% if (defined? @table.description) && @table.description.present? %>
 <div class="tableDescription"><%= @table.description %></div>
 <% end %>

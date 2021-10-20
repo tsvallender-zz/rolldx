@@ -10,6 +10,7 @@ class Table < ApplicationRecord
   
   include PublicActivity::Common
 
+  belongs_to :die
 
   belongs_to :user
   has_many :rows, dependent: :destroy, inverse_of: :table

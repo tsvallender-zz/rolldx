@@ -66,7 +66,7 @@ class TablesController < ApplicationController
   end
   
   def table_params
-    params.require(:table).permit(:title, :description, :draft, :private,
+    params.require(:table).permit(:title, :description, :die_id, :draft, :private,
                                   rows_attributes: [:id, :num, :name, :description, :_destroy])
   end
 
