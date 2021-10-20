@@ -4,37 +4,48 @@
 
 <script>
   window.onload = function() {
-      let lastValue = document.getElementById('table_die_id').value;
+      let dice = JSON.parse('<%= raw(Die.all.to_json) %>');
+      let lastValue = dice[document.getElementById('table_die_id').value - 1];
+
       document.getElementById('table_die_id').addEventListener('change', function(e) {
-	  let dice = JSON.parse('<%= raw(Die.all.to_json) %>');
 	  let die = dice[e.target.value - 1];
 	  let table = document.getElementById('formTable');
 	  let currentRows = table.rows.length - 1;
 
-	  if (currentRows > die.numbers.length) {
-	      if (confirm("This will shrink the current table and rows above " + (table.rows.length - 1) + " will be lost. Continue?")) {
+	  // Shrinking table
+	  if (lastValue.numbers.length > die.numbers.length) {
+	      if (confirm("This will shrink the current table and rows above " + lastValue.numbers.length + " will be lost. Continue?")) {
 		  Array.prototype.forEach.call(table.rows, function(value, index, array) {
-		      // set row number in case of d66 etc
+		      table.rows[index].cells[0].firstChild.value = die.numbers[index-1];
 		      if ((index-1) >= die.numbers.length) {
 			  table.rows[index].style.display = 'none';
-			  table.rows[index].cells[0].innerHTML += `<input type="hidden" value="true" name="table[rows_attributes][${index-1}[_destroy]" id="table_rows_attributes_${index-1}_destroy">`;
+			  table.rows[index].cells[2].innerHTML += `<input type="hidden" value="true" name="table[rows_attributes][${index-1}[_destroy]" id="table_rows_attributes_${index-1}_destroy">`;
 		      }
 		  });
 		  
-		  lastValue = e.target.value;
+		  lastValue = dice[e.target.value - 1];
 	      } else {
-		  e.target.value = lastValue;
+		  // Cancelled. Reset die select.
+		  e.target.value = lastValue.name;
 	      }
+	  // Growing table
 	  } else {
 	      die.numbers.forEach(function(value, index, array) {
-		  if ((index) >= currentRows) {
-		      let row = table.insertRow(-1);
-		      row.innerHTML = `<tr><td><input type="number" value=${index+1} name="table[rows_attributes][${index+1}][num]" id="table[rows_attributes][${index+1}][num]"></td>
+		  if ((index) >= lastValue.numbers.length) {
+		      if (typeof table.rows[index+1] !== 'undefined') {
+			  // Row exists but hidden
+			  table.rows[index+1].style.display = "";
+		      } else {
+			  let row = table.insertRow(-1);
+			  row.innerHTML = `<tr><td><input type="number" disabled value=${index+1} name="table[rows_attributes][${index+1}][num]" id="table[rows_attributes][${index+1}][num]"></td>
                                    <td><input type="text" value="" name="table[rows_attributes][${index+1}][name]" id="table_rows_attributes_${index+1}_name"></td>
                                    <td><input type="text" value="" name="table[rows_attributes][${index+1}][description]" id="table_rows_attributes_${index+1}_description">`;
+		      }
 		  }
+		  // Renumber
+		  table.rows[index+1].cells[0].firstChild.value = die.numbers[index];
 	      });
-	      lastValue = e.target.value;
+	      lastValue = dice[e.target.value - 1];
 	  }
       });
   }
@@ -55,7 +66,7 @@
   <tbody>
     <%= f.fields_for :rows, @table.rows.order('num') do |row_f| %>
     <tr>
-      <td><%= row_f.number_field :num %></td>
+      <td><%= row_f.number_field :num, :disabled => true %></td>
       <td><%= row_f.text_field :name %></td>
       <td><%= row_f.text_field :description %></td>
     </tr>
