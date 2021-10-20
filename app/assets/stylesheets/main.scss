@@ -56,6 +56,10 @@ body {
 	border-style: solid;
 	border-color: #000;
     }
+
+    form {
+	width: 80%;
+    }
 }
 
 h1, h2, h3, h4 {
@@ -157,7 +161,6 @@ a:link.nodec, a:visited.nodec {
 }
 
 form {
-    width: 80%;
     margin: 0 auto;
     .field {
 	margin: .5em 0em;
@@ -176,10 +179,9 @@ form {
 	display: block;
     }
     input[type=submit] {
-	display: block;
-	padding: .5em;
+	display: inline-block;
+	padding: 1em;
 	margin: 0em;
-	width: 100%;
     }
     .helperText {
 	color: $helper-text;
@@ -373,7 +375,7 @@ strong {
     font-style: italic;
 }
 
-table#tableForm {
+#tableForm table {
     width: 100%;
     td {
 	vertical-align: middle;
@@ -395,11 +397,26 @@ table#tableForm {
 	background-color: rgba(255, 255, 255, 0.7);
 	border: 0;
 	border-radius: .5em;
+	padding: 1em;
     }
     input.rowNo {
 	width: 100%;
 	text-align: right;
-	padding: .5em;
+    }
+}
+#tableForm {
+    text-align: right;
+    .tableOptions {
+	float: left;
+	label {
+	    margin: .5em;
+	}
+    }
+    input[type=submit] {
+	background-color: #000;
+	color: #fff;
+	border: 0;
+	border-radius: 1em;
     }
 }
 

@@ -1,4 +1,4 @@
-<%= form_with(model: @table) do |f| %>
+<%= form_with(model: @table, id: 'tableForm') do |f| %>
 
 <%= render 'shared/error_messages', object: f.object %>
 
@@ -29,10 +29,11 @@
   }
 </script>
 
+<%= f.select
 <%= f.text_field :title, placeholder: "Table title", class: "titleField" %>
 <%= f.text_area :description, placeholder: "Table description", class: "descriptionInput" %>
 
-<table id="tableForm">
+<table id="formTable">
   <thead>
   <tr>
     <th class="numCol">No.</th>
@@ -46,12 +47,14 @@
   <% end %>
 </table>
 
-<%= link_to_add_nested(f, :rows, '#tableForm', link_classes: 'button addrow') %>
+<%= link_to_add_nested(f, :rows, '#formTable', link_classes: 'button addrow') %>
 
-<%= f.label :draft, class: 'formoptions' %>
-<%= f.check_box :draft, class: 'formoptions' %>
-<%= f.label :private, class: 'formoptions' %>
-<%= f.check_box :private, class: 'formoptions' %>
+<div class="tableOptions">
+  <%= f.label :draft, class: 'formoptions' %>
+  <%= f.check_box :draft, class: 'formoptions' %>
+  <%= f.label :private, class: 'formoptions' %>
+  <%= f.check_box :private, class: 'formoptions' %>
+</div>
 <%= f.submit yield(:button_text) %>
 
 <% end %>
