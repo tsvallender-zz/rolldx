@@ -21,7 +21,6 @@ gem 'redis', '~> 4.0'
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'devise'
-gem 'vanilla_nested'
 gem 'will_paginate'
 gem 'turbo-rails'
 gem 'pg_search'

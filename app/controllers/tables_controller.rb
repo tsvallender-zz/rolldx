@@ -22,6 +22,7 @@ class TablesController < ApplicationController
   end
 
   def new
+    @dice = Die.all
     @table = Table.new
     4.times do
       r = Row.new
@@ -42,11 +43,12 @@ class TablesController < ApplicationController
   end
 
   def edit
+    @dice = Die.all
   end
 
   def update
     if @table.update(table_params)
-      table.create_activity :update, owner: current_user
+      @table.create_activity :update, owner: current_user
       flash[:success] = "Table updated!"
       redirect_to @table
     else

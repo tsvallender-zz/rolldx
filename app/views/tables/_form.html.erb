@@ -4,32 +4,34 @@
 
 <script>
   window.onload = function() {
-      let rowNo = <%= @table.rows.count %>;
-      document.addEventListener('vanilla-nested:fields-added', function(e) {
-	  rowNo++;
-	  t = e.detail.added.getElementsByClassName('rowNo');
-	  console.dir(t[0]);
-	  t[0].value = rowNo;
-      })
 
-      if (<%= @table.rows.count %> == 0) {
-	  addRows(4);
-      }
+      document.getElementById('table_die_id').addEventListener('change', function(e) {
+	  let dice = JSON.parse('<%= raw(Die.all.to_json) %>');
+	  let die = dice[e.target.value - 1];
+	  let table = document.getElementById('formTable');
+	  let currentRows = table.rows.length;
+
+	  if (currentRows > die.numbers.length) {
+	      //are you sure?
+	  }
+	  
+	  die.numbers.forEach(function(value, index, array) {
+	      if ((index+1) >= currentRows) {
+		  let row = table.insertRow(-1);
+		  row.innerHTML = `<tr><td><input type="number" value=${index+1} name="table[rows_attributes][${index+1}][num]" id="table[rows_attributes][${index+1}][num]"></td>
+                                   <td><input type="text" value="" name="table[rows_attributes][${index+1}][name]" id="table_rows_attributes_${index+1}_name" /></td>
+                                   <td><input type="text" value="" name="table[rows_attributes][${index+1}][description]" id="table_rows_attributes_${index+1}_description" /></td></tr>`;
+	      }
+	  });
+      });
   }
 
-  async function addRows(n) {
-      let button = document.getElementsByClassName('addrow')[0];
-      let e = document.createEvent('MouseEvents');
-      e.initEvent('click', true, true);
+  function addRow() {
 
-      for (let i = 0; i < n; i++) {
-	  await new Promise(r => setTimeout(r, 1));
-	  button.dispatchEvent(e);
-      }
   }
 </script>
 
-<%= f.collection_select :die, Die.all, :id, :name %>
+<%= f.collection_select :die_id, Die.all, :id, :name %>
 <%= f.text_field :title, placeholder: "Table title", class: "titleField" %>
 <%= f.text_area :description, placeholder: "Table description", class: "descriptionInput" %>
 
@@ -39,15 +41,18 @@
     <th class="numCol">No.</th>
     <th class="nameCol">Name</th>
     <th class="descriptionCol">Description</th>
-    <th class="removeCol"></th>
   </tr>
   </thead>
-  <%= f.fields_for :rows, @table.rows.order('num') do |row_f| %>
-    <%= render 'row_fields', form: row_f %>
-  <% end %>
+  <tbody>
+    <%= f.fields_for :rows, @table.rows.order('num') do |row_f| %>
+    <tr>
+      <td><%= row_f.number_field :num %></td>
+      <td><%= row_f.text_field :name %></td>
+      <td><%= row_f.text_field :description %></td>
+    </tr>
+    <% end %>
+  </tbody>
 </table>
-
-<%= link_to_add_nested(f, :rows, '#formTable', link_classes: 'button addrow') %>
 
 <div class="tableOptions">
   <%= f.label :draft, class: 'formoptions' %>
