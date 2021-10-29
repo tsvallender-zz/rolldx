@@ -21,6 +21,17 @@
   </div>
 
   <div class="field">
+    <%= f.label :avatar %>
+    <% if resource.avatar.attached? %>
+      <%= image_tag url_for(resource.avatar), class: "rounded" %>
+    <% else %>
+      <p>No avatar yet!</p> <!-- TODO add default -->
+    <% end %>
+
+    <%= f.file_field :avatar %>  
+  </div>
+  
+  <div class="field">
     <%= f.label :web, 'Website URL' %>
     <span class="helperText">Where is the best place to find you
     online?</span>

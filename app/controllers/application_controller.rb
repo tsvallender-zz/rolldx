@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
                      :support,
                      :itch,
                      :name,
-                     :twitter)}
+                     :twitter,
+                     :avatar)}
     end
 end

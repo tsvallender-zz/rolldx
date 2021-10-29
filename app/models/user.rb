@@ -17,6 +17,8 @@ class User < ApplicationRecord
 
   has_many :followers, through: 'f_followers', source: 'follower'
   has_many :following, through: 'f_following', source: 'following'
+
+  has_one_attached :avatar
   
   def to_param
     username
