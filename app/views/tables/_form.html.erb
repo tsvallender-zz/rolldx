@@ -35,9 +35,13 @@
 		      if (typeof table.rows[index+1] !== 'undefined') {
 			  // Row exists but hidden
 			  table.rows[index+1].style.display = "";
+			  console.log(index);
+			  let deleteNode = document.getElementById(`table_rows_attributes_${index}_destroy`);
+			  deleteNode.parentNode.removeChild(deleteNode);
 		      } else {
 			  let row = table.insertRow(-1);
-			  row.innerHTML = `<tr><td><input type="number" disabled value=${index+1} name="table[rows_attributes][${index+1}][num]" id="table[rows_attributes][${index+1}][num]"></td>
+			  row.innerHTML = `<tr>
+                                   <td><input class="rowNo no-spinners" type="number" value="${index+1}" name="table[rows_attributes][${index+1}][num]" id="table_rows_attributes_${index+1}_num"></td>
                                    <td><input type="text" value="" name="table[rows_attributes][${index+1}][name]" id="table_rows_attributes_${index+1}_name"></td>
                                    <td><input type="text" value="" name="table[rows_attributes][${index+1}][description]" id="table_rows_attributes_${index+1}_description">`;
 		      }
@@ -66,7 +70,7 @@
   <tbody>
     <%= f.fields_for :rows, @table.rows.order('num') do |row_f| %>
     <tr>
-      <td><%= row_f.number_field :num, :disabled => true %></td>
+      <td><%= row_f.number_field :num, class: 'no-spinners rowNo' %></td>
       <td><%= row_f.text_field :name %></td>
       <td><%= row_f.text_field :description %></td>
     </tr>
@@ -75,6 +79,9 @@
 </table>
 
 <div class="tableOptions">
+  <% if defined? delete %>
+  <%= link_to 'Delete table', @table, method: :delete, data: {confirm: "Are you sure?"} %>
+  <% end %>
   <%= f.label :draft, class: 'formoptions' %>
   <%= f.check_box :draft, class: 'formoptions' %>
   <%= f.label :private, class: 'formoptions' %>

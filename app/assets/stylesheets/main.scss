@@ -384,15 +384,22 @@ strong {
     .numCol {
 	width: 5%;
     }
+    .no-spinners {
+	-moz-appearance:textfield;
+    }
+    
+    .no-spinners::-webkit-outer-spin-button,
+    .no-spinners::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+    }
     .nameCol {
 	width: 35%;
     }
     .descriptionCol {
-	width: 50%;
+	width: 60%;
     }
-    .removeCol {
-	width: 10%;
-    }
+
     input {
 	background-color: rgba(255, 255, 255, 0.7);
 	border: 0;
@@ -401,18 +408,20 @@ strong {
     }
     input.rowNo {
 	width: 100%;
-	text-align: right;
+	text-align: center;
     }
 }
 #tableForm {
     text-align: right;
     .tableOptions {
+	padding: .5em;
 	float: left;
 	label {
 	    margin: .5em;
 	}
     }
     input[type=submit] {
+	margin: .5em;
 	background-color: #000;
 	color: #fff;
 	border: 0;
@@ -420,12 +429,4 @@ strong {
     }
 }
 
-.no-spinners {
-    -moz-appearance:textfield;
-}
 
-.no-spinners::-webkit-outer-spin-button,
-.no-spinners::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}

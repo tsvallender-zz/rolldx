@@ -1,6 +1,6 @@
 <% provide(:title, 'Edit ' + @table.title) %>
 <% provide(:button_text, 'Save edits') %>
 
-<%= render 'form' %>
+<%= render 'form', delete: true %>
 
-<%= link_to 'Delete table', @table, method: :delete, data: {confirm: "Are you sure?"} %>
+
