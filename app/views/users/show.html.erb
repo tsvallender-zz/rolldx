@@ -1,9 +1,13 @@
 <% provide(:title, @user.username) %>
 
 <header class="user">
-    <% if @user.avatar.attached? %>
+  <% if @user.avatar.attached? %>
+
     <%= image_tag @user.avatar, class: "avatar" %>
+    <% else %>
+    <%= image_tag 'avatar.png', class: "avatar" %>
     <% end %>
+
   <span class="usernames">
     <h2><%= '@'+@user.username %></h2>
     <% if (defined? @user.name && @user.name.present?) %>
