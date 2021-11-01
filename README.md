@@ -1,24 +1,17 @@
-# README
+# Roll dx
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Roll dx is a place for tabletop roleplayers to create, share and horde
+tables.
 
-Things you may want to cover:
+## Features include:
 
-* Ruby version
+* Easily write tables
+* Follow users and discover their creations
+* Create lists of tables for easy reference during play
+* Search tables to find something that suits your needs
+* Save tables as drafts or for private-use only
 
-* System dependencies
+## Future features include:
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Export tables to PDFs
+* Automatically roll on a table
