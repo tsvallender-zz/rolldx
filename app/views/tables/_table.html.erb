@@ -1,6 +1,13 @@
 <div class="table">
 <h3><%= link_to table.title, table, class: 'nodec' %>
-  <span class="name">by <%= link_to table.user.username, table.user %></span></h3>
+  <span class="name">by
+    <%= link_to table.user do %>
+    <% if table.user.avatar.attached? %>
+    <%= image_tag table.user.avatar.variant(resize: "40 x 40"), class: "avatar" %>
+    <% end %>
+    <%= table.user.username %>
+    <% end %>
+</span></h3>
 
 <% if (defined? table.title) && !table.title.empty? %>
 <div class="tableDescription"><%= table.description %></div>

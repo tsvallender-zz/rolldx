@@ -1,10 +1,16 @@
 <% provide(:title, @user.username) %>
 
-<h2><%= '@'+@user.username %></h2>
-<% if (defined? @user.name && @user.name.present?) %>
-  <div class="name"><%= @user.name %></div>
-<% end %>
-
+<header class="user">
+    <% if @user.avatar.attached? %>
+    <%= image_tag @user.avatar, class: "avatar" %>
+    <% end %>
+  <span class="usernames">
+    <h2><%= '@'+@user.username %></h2>
+    <% if (defined? @user.name && @user.name.present?) %>
+    <div class="name"><%= @user.name %></div>
+    <% end %>
+  </span>
+</header>
 <% if @user != current_user %>
   <% if @follow.following.present? %>
     <%= link_to 'Unfollow', @follow, :method => 'delete' %>
