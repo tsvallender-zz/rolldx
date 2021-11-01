@@ -9,13 +9,13 @@ default: &default
 
 development:
   <<: *default
-  database: tabled_development
+  database: rolldx_development
 
 test:
   <<: *default
-  database: tabled_test
+  database: rolldx_test
 
 production:
   <<: *default
-  database: tabled_production
+  database: rolldx_production
 
