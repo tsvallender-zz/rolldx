@@ -3,6 +3,10 @@ class ListsController < ApplicationController
   before_action :set_list, only: [:show]
 
   def new
+    if (defined? params[:table_id])
+      @table_id = params[:table_id]
+    end
+
     @list = List.new
   end
 

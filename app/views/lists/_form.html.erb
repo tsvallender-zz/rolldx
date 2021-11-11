@@ -11,6 +11,11 @@
 <%= f.label :private %>
 <%= f.check_box :private %>
 
+<% if (defined? table_ids) && table_ids.present? %>
+  <% table_ids.each do |id| %>
+  <%= f.hidden_field :table_ids, multiple: true, value: id %>
+  <% end %>
+<% end %>
 <%= f.submit yield(:button_text) %>
 
 <% end %>

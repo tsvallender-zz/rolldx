@@ -24,7 +24,7 @@
 
 <%= form_with(model: @listmember, class: 'listmember') do |f| %>
   <%= f.hidden_field :table_id, value: @table.id %>
-  <%= f.select :list_id, current_user.lists.collect { |l| [ l.name, l.id ] }, { include_blank: true } %>
+  <%= f.select :list_id, current_user.lists.collect { |l| [ l.name, l.id ] }, { include_blank: 'New list' } %>
   <%= f.submit "Add table to list" %>
 <% end %>
 </div>

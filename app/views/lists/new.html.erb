@@ -1,4 +1,9 @@
 <% provide(:title, 'New list') %>
 <% provide(:button_text, 'Create list') %>
 
-<%= render 'form' %>
+<% if (defined? @table_id) && @table_id.present? %>
+  <%= render partial: 'form', locals: {table_ids: [@table_id]} %>
+<% else %>
+  <%= render partial: 'form' %>
+<% end %>
+
