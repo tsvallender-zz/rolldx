@@ -11,7 +11,13 @@
     <% end %>
 </span></h3>
 
-<% if (defined? table.title) && !table.title.empty? %>
+<% if (defined? lm) %>
+<%= link_to "Remove from list", lm, method: :delete,
+    data: { confirm: 'Are you sure you want to remove this table from the list?' },
+    class: 'remove_link' %>
+<% end %>
+
+<% if (defined? table.descriptiom) && !table.description.empty? %>
 <div class="tableDescription"><%= table.description %></div>
 <% end %>
 

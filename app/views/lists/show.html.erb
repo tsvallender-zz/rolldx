@@ -6,4 +6,9 @@
 
 <h3><%= @list.name %></h3>
 <div class="tableDescription"><%= @list.description %></div>
-<%= render @list.tables %>
+
+<% if @list.user == current_user %>
+<% @list.tables.each do |t| %>
+<%= render partial: t, locals: { lm: ListMember.find_by(list_id: @list.id, table_id: t.id) } %>
+<% end %>
+<% end %>

@@ -16,6 +16,14 @@ class ListMembersController < ApplicationController
     end
   end
 
+  def destroy
+    lm = ListMember.find(params[:id])
+    list = lm.list
+    lm.destroy
+    flash[:success] = "Table removed from list"
+    redirect_to list
+  end
+
   private
   def list_member_params
     params.require(:list_member).permit(:list_id, :table_id)

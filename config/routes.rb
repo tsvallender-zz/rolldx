@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   resources :lists
   resources :tables
-  resources :list_members, only: [:create]
+  resources :list_members, only: [:create, :destroy]
   resources :follows, only: [:create, :destroy]
   root to: 'static#index'
 end
