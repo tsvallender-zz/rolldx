@@ -4,6 +4,11 @@ class ListMembersController < ApplicationController
   def create
     lm = ListMember.new(list_member_params)
 
+    if ListMember.exists?(list_id: lm.list.id, table_id: lm.table.id)
+      flash[:alert] = "That table is already on the list"
+      return redirect_to lm.list
+    end
+    
     if lm.save!
       lm.create_activity :create, owner: current_user
       flash[:success] = lm.list.name + " was added to your list"
