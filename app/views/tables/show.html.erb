@@ -22,10 +22,12 @@
     '&text=Check+out+this+great+table+on+Tabled+by+'+@table.user.username+'!'+
     '&hashtags=ttrpg,tabled', class: 'editLink' %>
 
-<%= form_with(model: @listmember, class: 'listmember') do |f| %>
-  <%= f.hidden_field :table_id, value: @table.id %>
-  <%= f.select :list_id, current_user.lists.collect { |l| [ l.name, l.id ] }, { include_blank: 'New list' } %>
-  <%= f.submit "Add table to list" %>
+<% if user_signed_in? %>
+  <%= form_with(model: @listmember, class: 'listmember') do |f| %>
+    <%= f.hidden_field :table_id, value: @table.id %>
+    <%= f.select :list_id, current_user.lists.collect { |l| [ l.name, l.id ] }, { include_blank: 'New list' } %>
+    <%= f.submit "Add table to list" %>
+  <% end %>
 <% end %>
 </div>
 <div class="left">

@@ -22,9 +22,9 @@
 <div class="left">
   <%= render 'tables/search' %>
   <section id="activities">
-  <h2>Latest tables:</h2>
+  <h2>Latest activity:</h2>
   <% if @activities.any? %>
-  <%= will_paginate @activities%>
+    <%= will_paginate @activities%>
     <% @activities.each do |a| %>
       <div class="activity">
       <% if a.trackable %> 
@@ -33,7 +33,10 @@
       <% end %>
       </div>  
     <% end %>
-  <%= will_paginate @activities %>
+    <%= will_paginate @activities %>
+  <% else %>
+    <p>No tables to show from users you follow. Why not 
+    <%= link_to 'browse tables?', tables_path %></p>
   <% end %>
   </section>
 </div>

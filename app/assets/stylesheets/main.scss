@@ -1,9 +1,10 @@
-$border-color: #000;
+$border-color: #761B19;
 $title-font: 'Linden Hill', Cambria, Times New Roman;
 $body-font: 'Raleway', Calibri, Helvetica, Arial;
 $helper-text: gray;
-$bold-background: #000;
+$bold-background: #761B19;
 $bold-foreground: #fff;
+$bg-color: #F7E5CA;
 
 @font-face {
     font-family: 'Linden Hill';
@@ -33,7 +34,7 @@ $bold-foreground: #fff;
 html {
     height: 100vh;
     min-height: 100vh;
-    background-color: #fff;
+    background-color: #C29979;
 }
 
 body {
@@ -42,10 +43,7 @@ body {
     min-height: 100%;
 
     padding: 0em 1em;
-    background-image: image-url('background.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed;
+    background-color: $bg-color;
 }
 
 @media(min-width: 700px) {
@@ -103,19 +101,18 @@ nav {
     text-align: center;
     margin-bottom: 1em;
     li {
-	margin: 0em 1em;
-	list-style-type: none;
-	display: inline-block;
-	a {
-	    color: $border-color;
-	    text-decoration: none;
-	}
-	a:hover {
-	    text-decoration: underline;
-	}
+        margin: 0em 1em;
+        list-style-type: none;
+        display: inline-block;
+        a {
+            color: #000;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
     }
 }
-
 
 .tableDescription {
     text-align: center;
@@ -232,18 +229,18 @@ ul#userlinks {
 	display: inline-block;
     }
 }
-
-
-.loggedOut {
-    p {
+p {
 	margin: 1em;
     }
+
+.loggedOut {
+
     ul {
-	margin: 2em;
-	li {
-	    margin: 1em;
-	    list-style-type: disc;
-	}
+        margin: 2em;
+        li {
+            margin: 1em;
+            list-style-type: disc;
+        }
     }
 }
 .buttons {
@@ -282,28 +279,27 @@ ul#userlinks {
 	width: 60%;
     }
     .right {
-	width: 30%;
-	float: right;
-	.button {
-	    display: block;
-	    margin: 1em 0 1em 0;
-	}
-	li {
-	    list-style-type: disc;
-	    margin: 1em;
-	}
+        width: 30%;
+        float: right;
+        .button {
+            display: block;
+            margin: 1em 0 1em 0;
+        }
+        li {
+            list-style-type: disc;
+            margin: 1em;
+        }
     }
 }
 
 form.search {
-    background-color: $bold-background;
-    color: $bold-foreground;
+    background-color: rgba(255, 255, 255, 0.5);
     width: 100%;
     padding: .5em;
     border-radius: .5em;
     margin: 1em 0;
     h2 {
-	margin: 0;
+        margin: 0;
     }
 }
 
@@ -319,10 +315,10 @@ form.search {
     padding: .5em;
     margin-bottom: 1em;
     h2 {
-	margin: 0;
+        margin: 0;
     }
     .activity {
-	margin: .2em 0;
+        margin: .2em 0;
     }
 }
 
