@@ -1,6 +1,15 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
+  ActionMailer::Base.smtp_settings = {
+    :user_name =>'apikey',
+    :password => ENV["SENDGRID_APIKEY"],
+    :domain => 'rolldx.dev.tsvallender.co.uk',
+    :address => 'smtp.sendgrid.net',
+    :port => 2525,
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
   # Settings specified here will take precedence over those in config/application.rb.
  
  # Code is not reloaded between requests.
@@ -62,8 +71,10 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "tabled_production"
 
+  config.action_mailer.perform_deliveries = true
   config.action_mailer.perform_caching = false
-#  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 } # TODO implement email server
+  config.action_mailer.default_url_options = { host: 'rolldx.dev.tsvallender.co.uk' }
+  config.action_mailer.delivery_method = :smtp
   
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
