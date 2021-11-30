@@ -1,8 +1,6 @@
 
 <%= form_with(url: tables_path, method: :get, class: "search") do |f| %>
 <h2>Find a table</h2>
-<div class="field">
 <%= text_field :search, :terms, placeholder: "Enter search terms" %>
-</div>
 <%= f.submit 'Search' %>
 <% end %>

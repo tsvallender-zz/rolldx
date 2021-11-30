@@ -293,6 +293,7 @@ p {
 }
 
 form.search {
+    text-align:center;
     background-color: rgba(255, 255, 255, 0.5);
     width: 100%;
     padding: .5em;
@@ -300,6 +301,11 @@ form.search {
     margin: 1em 0;
     h2 {
         margin: 0;
+    }
+    input[type=text] {
+        display: inline;
+        width: 75%;
+        padding: 1em;
     }
 }
 
@@ -355,11 +361,15 @@ strong {
 .notice, .alert {
     display: block;
     width: 80%;
-    background-color: rgba(200, 0, 0, 0.5);
+    background-color: rgba(0, 200, 0, 0.5);
     padding: .5em;
     border-radius: .5em;
     margin: .5em auto;
     font-weight: bold;
+}
+
+.alert {
+    background-color: rgba(0, 200, 0, 0.5);
 }
 
 .math {

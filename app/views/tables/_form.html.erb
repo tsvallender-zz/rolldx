@@ -3,56 +3,57 @@
 <%= render 'shared/error_messages', object: f.object %>
 
 <script>
-  window.onload = function() {
-      let dice = JSON.parse('<%= raw(Die.all.to_json) %>');
-      let lastValue = dice[document.getElementById('table_die_id').value - 1];
+window.onload = function() {
+	let dice = JSON.parse('<%= raw(Die.all.to_json) %>');
+	let lastValue = dice[document.getElementById('table_die_id').value - 1];
 
-      document.getElementById('table_die_id').addEventListener('change', function(e) {
-	  let die = dice[e.target.value - 1];
-	  let table = document.getElementById('formTable');
-	  let currentRows = table.rows.length - 1;
+	document.getElementById('table_die_id').addEventListener('change', function(e) {
+		let die = dice[e.target.value - 1];
+		let table = document.getElementById('formTable');
+		let currentRows = table.rows.length - 1;
 
-	  // Shrinking table
-	  if (lastValue.numbers.length > die.numbers.length) {
-	      if (confirm("This will shrink the current table and rows above " + lastValue.numbers.length + " will be lost. Continue?")) {
-		  Array.prototype.forEach.call(table.rows, function(value, index, array) {
-		      table.rows[index].cells[0].firstChild.value = die.numbers[index-1];
-		      if ((index-1) >= die.numbers.length) {
-			  table.rows[index].style.display = 'none';
-			  table.rows[index].cells[2].innerHTML += `<input type="hidden" value="true" name="table[rows_attributes][${index-1}[_destroy]" id="table_rows_attributes_${index-1}_destroy">`;
-		      }
-		  });
-		  
-		  lastValue = dice[e.target.value - 1];
-	      } else {
-		  // Cancelled. Reset die select.
-		  e.target.value = lastValue.name;
-	      }
-	  // Growing table
-	  } else {
-	      die.numbers.forEach(function(value, index, array) {
-		  if ((index) >= lastValue.numbers.length) {
-		      if (typeof table.rows[index+1] !== 'undefined') {
-			  // Row exists but hidden
-			  table.rows[index+1].style.display = "";
-			  console.log(index);
-			  let deleteNode = document.getElementById(`table_rows_attributes_${index}_destroy`);
-			  deleteNode.parentNode.removeChild(deleteNode);
-		      } else {
-			  let row = table.insertRow(-1);
-			  row.innerHTML = `<tr>
-                                   <td><input class="rowNo no-spinners" type="number" value="${index+1}" name="table[rows_attributes][${index+1}][num]" id="table_rows_attributes_${index+1}_num"></td>
-                                   <td><input type="text" value="" name="table[rows_attributes][${index+1}][name]" id="table_rows_attributes_${index+1}_name"></td>
-                                   <td><input type="text" value="" name="table[rows_attributes][${index+1}][description]" id="table_rows_attributes_${index+1}_description">`;
-		      }
-		  }
-		  // Renumber
-		  table.rows[index+1].cells[0].firstChild.value = die.numbers[index];
-	      });
-	      lastValue = dice[e.target.value - 1];
-	  }
-      });
-  }
+		// Shrinking table
+		if (lastValue.numbers.length > die.numbers.length) {
+			if (confirm("This will shrink the current table and rows above " + lastValue.numbers.length + " will be lost. Continue?")) {
+				Array.prototype.forEach.call(table.rows, function(value, index, array) {
+					table.rows[index].cells[0].firstChild.value = die.numbers[index-1];
+					if ((index-1) >= die.numbers.length) {
+						table.rows[index].style.display = 'none';
+						table.rows[index].cells[2].innerHTML += `<input type="hidden" value="true" name="table[rows_attributes][${index-1}[_destroy]" id="table_rows_attributes_${index-1}_destroy">`;
+					}
+				});
+				lastValue = dice[e.target.value - 1];
+			} else {
+				// Cancelled. Reset die select.
+				e.target.value = lastValue.name;
+			}
+			// Growing table
+		} else {
+			die.numbers.forEach(function(value, index, array) {
+			if ((index) >= lastValue.numbers.length) {
+				if (typeof table.rows[index+1] !== 'undefined') {
+					// Row exists but hidden
+					table.rows[index+1].style.display = "";
+					console.log(index);
+					let deleteNode = document.getElementById(`table_rows_attributes_${index}_destroy`);
+					deleteNode.parentNode.removeChild(deleteNode);
+				} else {
+					let row = table.insertRow(-1);
+					row.innerHTML = `<td><input class="rowNo no-spinners" type="number" value="${index+1}" name="table[rows_attributes][${index+1}][num]" id="table_rows_attributes_${index+1}_num"></td>
+								<td><input type="text" value="" name="table[rows_attributes][${index+1}][name]" id="table_rows_attributes_${index+1}_name"></td>
+								<td><input type="text" value="" name="table[rows_attributes][${index+1}][description]" id="table_rows_attributes_${index+1}_description">`;
+				}
+			} else {
+				console.log('mm');
+			}
+			// Renumber
+			table.rows[index+1].cells[0].firstChild.value = die.numbers[index];
+			});
+
+			lastValue = dice[e.target.value - 1];
+		}
+	});
+}
 </script>
 
 <%= f.collection_select :die_id, Die.all, :id, :name %>
